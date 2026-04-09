@@ -1,11 +1,13 @@
 package com.readora.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,19 +23,33 @@ public class RegisterViewController {
     private TextField usernameField;
 
     @FXML
+    private ComboBox<String> roleComboBox;
+
+    @FXML
     private PasswordField passwordField;
 
     @FXML
     private PasswordField confirmPasswordField;
 
     @FXML
-    private void handleRegister() {
+    public void initialize() {
+        roleComboBox.setItems(FXCollections.observableArrayList(
+                "Sign up as ADMIN",
+                "Sign up as Librarian",
+                "Sign up as Member"
+        ));
+    }
+
+    @FXML
+    private void handleRegister(ActionEvent event) {
         String fullName = fullNameField.getText().trim();
         String username = usernameField.getText().trim();
+        String selectedRole = roleComboBox.getValue();
         String password = passwordField.getText().trim();
         String confirmPassword = confirmPasswordField.getText().trim();
 
-        if (fullName.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (fullName.isEmpty() || username.isEmpty() || selectedRole == null
+                || password.isEmpty() || confirmPassword.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Registration Error", "Please complete all registration fields.");
             return;
         }
@@ -43,7 +59,13 @@ public class RegisterViewController {
             return;
         }
 
-        showAlert(Alert.AlertType.INFORMATION, "Register", "Registration front-end is ready. Backend logic can be connected next.");
+        showAlert(
+                Alert.AlertType.INFORMATION,
+                "Registration Successful",
+                "Account created successfully as " + selectedRole + ". You will now return to the login page."
+        );
+
+        switchScene(event, "/view/LoginView.fxml", "Readora - Login");
     }
 
     @FXML
