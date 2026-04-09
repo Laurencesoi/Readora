@@ -34,7 +34,7 @@ public class MainViewController {
         viewProfileItem.setOnAction(event -> handleViewProfile());
         settingsItem.setOnAction(event -> handleSettings());
         helpItem.setOnAction(event -> handleHelp());
-        logoutItem.setOnAction(event -> handleLogout());
+        logoutItem.setOnAction(this::handleLogout);
 
         adminContextMenu.getItems().addAll(
                 viewProfileItem,
@@ -76,8 +76,33 @@ public class MainViewController {
     }
 
     @FXML
-    private void handleLogout() {
-        showInfo("Logout", "Logout function is prepared, but LoginView is not yet created.");
+    private void handleLogout(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginView.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) adminMenuButton.getScene().getWindow();
+            double currentWidth = stage.getWidth();
+            double currentHeight = stage.getHeight();
+            boolean wasMaximized = stage.isMaximized();
+
+            Scene newScene = new Scene(root, currentWidth, currentHeight);
+
+            stage.setTitle("Readora - Login");
+            stage.setScene(newScene);
+            stage.setMinWidth(1200);
+            stage.setMinHeight(700);
+
+            Platform.runLater(() -> {
+                stage.setMaximized(wasMaximized || true);
+                stage.centerOnScreen();
+                stage.show();
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showInfo("Error", "Unable to return to the login page.");
+        }
     }
 
     private void switchScene(ActionEvent event, String fxmlPath, String title) {
