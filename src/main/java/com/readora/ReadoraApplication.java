@@ -10,7 +10,7 @@ public class ReadoraApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(
-                ReadoraApplication.class.getResource("/view/MainView.fxml")
+                ReadoraApplication.class.getResource("/view/LoginView.fxml")
         );
 
         Scene scene = new Scene(loader.load(), 1400, 850);

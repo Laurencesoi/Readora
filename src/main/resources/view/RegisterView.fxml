@@ -12,7 +12,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/20"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.readora.controller.LoginViewController"
+            fx:controller="com.readora.controller.RegisterViewController"
             stylesheets="@style.css"
             styleClass="root-pane">
 
@@ -38,34 +38,49 @@
                     <Insets top="36" right="34" bottom="36" left="34"/>
                 </padding>
 
-                <Label text="Welcome Back" styleClass="login-title"/>
-                <Label text="Sign in to continue to Readora" styleClass="login-subtitle"/>
+                <Label text="Create Account" styleClass="login-title"/>
+                <Label text="Register to get started with Readora" styleClass="login-subtitle"/>
+
+                <VBox spacing="8" maxWidth="320">
+                    <Label text="Full Name" styleClass="form-label"/>
+                    <TextField fx:id="fullNameField"
+                               promptText="Enter your full name"
+                               styleClass="login-input"/>
+                </VBox>
 
                 <VBox spacing="8" maxWidth="320">
                     <Label text="Username" styleClass="form-label"/>
                     <TextField fx:id="usernameField"
-                               promptText="Enter your username"
+                               promptText="Choose a username"
                                styleClass="login-input"/>
                 </VBox>
 
                 <VBox spacing="8" maxWidth="320">
                     <Label text="Password" styleClass="form-label"/>
                     <PasswordField fx:id="passwordField"
-                                   promptText="Enter your password"
+                                   promptText="Create a password"
                                    styleClass="login-input"/>
                 </VBox>
 
-                <Button text="Login"
-                        onAction="#handleLogin"
-                        styleClass="primary-login-button"
-                        maxWidth="320"/>
+                <VBox spacing="8" maxWidth="320">
+                    <Label text="Confirm Password" styleClass="form-label"/>
+                    <PasswordField fx:id="confirmPasswordField"
+                                   promptText="Confirm your password"
+                                   styleClass="login-input"/>
+                </VBox>
 
                 <Button text="Register"
                         onAction="#handleRegister"
+                        styleClass="primary-login-button"
+                        maxWidth="320"/>
+
+                <Button text="Back to Login"
+                        onAction="#handleBackToLogin"
                         styleClass="secondary-login-button"
                         maxWidth="320"/>
 
-                <Label text="Library access starts here." styleClass="login-footer-text"/>
+                <Label text="Create your account to continue."
+                       styleClass="login-footer-text"/>
             </VBox>
         </VBox>
     </center>

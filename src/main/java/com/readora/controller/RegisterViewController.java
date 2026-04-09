@@ -12,7 +12,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginViewController {
+public class RegisterViewController {
+
+    @FXML
+    private TextField fullNameField;
 
     @FXML
     private TextField usernameField;
@@ -21,21 +24,31 @@ public class LoginViewController {
     private PasswordField passwordField;
 
     @FXML
-    private void handleLogin(ActionEvent event) {
+    private PasswordField confirmPasswordField;
+
+    @FXML
+    private void handleRegister() {
+        String fullName = fullNameField.getText().trim();
         String username = usernameField.getText().trim();
         String password = passwordField.getText().trim();
+        String confirmPassword = confirmPasswordField.getText().trim();
 
-        if (username.isEmpty() || password.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Login Error", "Please enter your username and password.");
+        if (fullName.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Registration Error", "Please complete all registration fields.");
             return;
         }
 
-        switchScene(event, "/view/MainView.fxml", "Readora Dashboard");
+        if (!password.equals(confirmPassword)) {
+            showAlert(Alert.AlertType.WARNING, "Registration Error", "Passwords do not match.");
+            return;
+        }
+
+        showAlert(Alert.AlertType.INFORMATION, "Register", "Registration front-end is ready. Backend logic can be connected next.");
     }
 
     @FXML
-    private void handleRegister(ActionEvent event) {
-        switchScene(event, "/view/RegisterView.fxml", "Readora - Register");
+    private void handleBackToLogin(ActionEvent event) {
+        switchScene(event, "/view/LoginView.fxml", "Readora - Login");
     }
 
     private void switchScene(ActionEvent event, String fxmlPath, String title) {
@@ -53,7 +66,7 @@ public class LoginViewController {
 
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Unable to open the requested page.");
+            showAlert(Alert.AlertType.ERROR, "Navigation Error", "Unable to return to the login page.");
         }
     }
 
