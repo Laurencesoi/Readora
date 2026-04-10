@@ -40,7 +40,7 @@ public class StudentViewController {
         MenuItem helpItem = new MenuItem("Help");
         MenuItem logoutItem = new MenuItem("Logout");
 
-        viewProfileItem.setOnAction(event -> showInfo("Profile", "Student profile details can be added here."));
+        viewProfileItem.setOnAction(event -> showInfo("Profile", "Student profile details can be added here soon."));
         settingsItem.setOnAction(event -> showInfo("Settings", "Student settings feature will be added soon."));
         helpItem.setOnAction(event -> showInfo("Help", "Readora Help Center is not yet available."));
         logoutItem.setOnAction(this::handleLogout);
