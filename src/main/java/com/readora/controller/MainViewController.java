@@ -101,7 +101,7 @@ public class MainViewController {
 
         } catch (IOException e) {
             e.printStackTrace();
-            showInfo("Error", "Unable to return to the login page.");
+            showInfo("Error", "Unable to return to this login page.");
         }
     }
 
