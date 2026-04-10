@@ -150,7 +150,7 @@
                     <Label text="Recent Activity" styleClass="mini-panel-title"/>
                     <Separator/>
                     <Label text="No recent activity available." styleClass="mini-panel-text"/>
-                    <Label text="Borrowing, returns, and updates will appear here once records are added."
+                    <Label text="Borrowing, returns, and updates will appear here once records will be added."
                            styleClass="mini-panel-subtext"/>
                   </VBox>
 
